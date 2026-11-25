@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Resume website of Beauty Yadav, BBA Business Analytics student at Galgotias University.">
+  <title>Beauty Yadav | BBA Business Analytics</title>
+  <style>
+    :root {
+      --navy: #142b4a;
+      --blue: #4776a8;
+      --pale: #eaf2f9;
+      --ink: #263445;
+      --muted: #667587;
+      --line: #e3e9ef;
+      --white: #ffffff;
+      --shadow: 0 12px 35px rgba(20, 43, 74, .07);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      background: #f7f9fc;
+      color: var(--ink);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .site-header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .nav-wrap {
+      max-width: 1120px; margin: auto; padding: 0 26px;
+      min-height: 70px; display: flex; align-items: center;
+      justify-content: space-between; gap: 20px;
+    }
+    .brand { color: var(--navy); font-size: 1.08rem; font-weight: 800; letter-spacing: .02em; }
+    .nav-links { display: flex; align-items: center; gap: 22px; }
+    .nav-links a { color: #526174; font-size: .88rem; font-weight: 600; }
+    .nav-links a:hover { color: var(--blue); }
+    .menu-toggle {
+      display: none; border: 1px solid var(--line); background: white;
+      color: var(--navy); border-radius: 8px; padding: 8px 11px; font-size: 1.1rem;
+    }
+    .container { width: min(1060px, calc(100% - 40px)); margin: auto; }
+    .hero { padding: 76px 0 60px; background: linear-gradient(135deg, #edf4fa 0%, #fff 68%); }
+    .hero-inner { display: grid; grid-template-columns: 1.5fr .75fr; align-items: center; gap: 55px; }
+    .eyebrow {
+      color: var(--blue); font-size: .78rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .16em;
+    }
+    h1 { color: var(--navy); font-size: clamp(2.6rem, 6vw, 4.5rem); line-height: 1.08; margin: 12px 0 10px; letter-spacing: -.045em; }
+    .hero-title { color: var(--blue); font-size: clamp(1.05rem, 2vw, 1.35rem); font-weight: 700; margin: 0 0 18px; }
+    .hero-copy { max-width: 620px; color: #596a7c; font-size: 1.04rem; margin: 0 0 26px; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 10px 20px; color: var(--muted); font-size: .91rem; margin-bottom: 27px; }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 7px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-flex; justify-content: center; align-items: center;
+      padding: 11px 18px; border-radius: 8px; font-weight: 700;
+      font-size: .9rem; border: 1px solid var(--navy); cursor: pointer;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { color: white; background: var(--navy); }
+    .btn-primary:hover { background: #203e65; }
+    .btn-outline { color: var(--navy); background: transparent; }
+    .btn-outline:hover { background: var(--pale); }
+    .photo-frame {
+      width: min(275px, 100%); aspect-ratio: 1; margin: auto;
+      border-radius: 28px; background: #dce8f3; padding: 10px;
+      box-shadow: var(--shadow); transform: rotate(2deg);
+    }
+    .photo-frame img {
+      width: 100%; height: 100%; object-fit: cover;
+      border-radius: 21px; display: block; transform: rotate(-2deg);
+      background: #eaf2f9;
+    }
+    .photo-fallback {
+      width: 100%; height: 100%; display: grid; place-items: center;
+      color: var(--navy); font-size: 4rem; font-weight: 800;
+      border-radius: 21px; background: linear-gradient(145deg,#dce8f3,#f8fbff);
+    }
+    main { padding: 22px 0 70px; }
+    .section { padding: 34px 0 12px; }
+    .section-heading { margin-bottom: 21px; }
+    .section-heading .eyebrow { margin-bottom: 5px; }
+    h2 { margin: 0; color: var(--navy); font-size: 1.65rem; letter-spacing: -.025em; }
+    .card {
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: 14px; padding: 25px 27px; box-shadow: var(--shadow);
+    }
+    .about-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 18px; }
+    .about-text { margin: 0; color: #596a7c; }
+    .objective { border-left: 3px solid var(--blue); padding-left: 17px; color: #596a7c; margin: 18px 0 0; }
+    .info-list { display: grid; gap: 13px; }
+    .info-item { display: flex; gap: 12px; align-items: flex-start; }
+    .info-icon {
+      width: 34px; height: 34px; display: grid; place-items: center;
+      flex: 0 0 34px; border-radius: 9px; background: var(--pale); color: var(--blue);
+      font-weight: 800;
+    }
+    .info-item small { display: block; color: var(--muted); font-size: .77rem; }
+    .info-item strong { font-size: .92rem; font-weight: 650; overflow-wrap: anywhere; }
+    .timeline { display: grid; gap: 15px; }
+    .timeline-item { position: relative; padding-left: 23px; border-left: 2px solid #d9e5f0; }
+    .timeline-item::before {
+      content: ""; position: absolute; left: -6px; top: 6px;
+      width: 10px; height: 10px; border-radius: 50%; background: var(--blue);
+    }
+    .item-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px 15px; }
+    .item-top h3 { margin: 0; color: var(--navy); font-size: 1.05rem; }
+    .date { color: var(--blue); font-size: .84rem; font-weight: 700; }
+    .subline { color: var(--muted); font-size: .91rem; margin: 2px 0 7px; }
+    .detail { color: #596a7c; margin: 0; }
+    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .skill-card h3 { color: var(--navy); font-size: 1rem; margin: 0 0 13px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { background: #eef4f9; color: #365574; padding: 6px 11px; border-radius: 6px; font-size: .84rem; }
+    .simple-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .simple-card h3 { margin: 0 0 6px; color: var(--navy); font-size: 1.02rem; }
+    .simple-card p { margin: 0; color: #596a7c; }
+    .contact-card { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .contact-note { color: #596a7c; margin: 0; }
+    .contact-links { display: grid; gap: 12px; align-content: center; }
+    .contact-links a { color: var(--blue); font-weight: 650; overflow-wrap: anywhere; }
+    footer { text-align: center; color: #7b8795; padding: 25px 15px; font-size: .83rem; border-top: 1px solid var(--line); background: white; }
+    @media (max-width: 800px) {
+      .nav-links { gap: 13px; }
+      .nav-links a { font-size: .8rem; }
+      .hero-inner { gap: 28px; }
+    }
+    @media (max-width: 650px) {
+      .nav-wrap { min-height: 62px; padding: 0 20px; }
+      .menu-toggle { display: block; }
+      .nav-links {
+        display: none; position: absolute; top: 61px; left: 0; right: 0;
+        padding: 14px 22px 18px; background: white; border-bottom: 1px solid var(--line);
+        flex-direction: column; align-items: flex-start; gap: 13px;
+      }
+      .nav-links.open { display: flex; }
+      .hero { padding: 52px 0 42px; }
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-copy { margin-left: auto; margin-right: auto; }
+      .hero-meta, .actions { justify-content: center; }
+      .photo-frame { grid-row: 1; width: 190px; }
+      .about-grid, .skills-grid, .simple-grid, .contact-card { grid-template-columns: 1fr; }
+      .card { padding: 21px; }
+      .section { padding-top: 28px; }
+    }
+    @media print {
+      @page { margin: 14mm; }
+      body { background: white; color: #222; font-size: 10pt; }
+      .site-header, .actions, footer { display: none !important; }
+      .hero { padding: 10px 0 22px; background: white; }
+      .hero-inner { grid-template-columns: 1fr 145px; gap: 20px; }
+      h1 { font-size: 30pt; }
+      .photo-frame { width: 130px; box-shadow: none; }
+      main { padding: 0; }
+      .section { padding: 16px 0 4px; break-inside: avoid; }
+      .card { box-shadow: none; border: 1px solid #d8dee6; padding: 15px; }
+      .chip { border: 1px solid #dce3ea; background: white; }
+      a { text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="#home">BEAUTY YADAV</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#home">Home</a><a href="#about">About</a><a href="#education">Education</a>
+        <a href="#skills">Skills</a><a href="#experience">Experience</a>
+        <a href="#projects">Projects</a><a href="#achievements">Achievements</a><a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container hero-inner">
+      <div>
+        <div class="eyebrow">Personal Resume</div>
+        <h1>Beauty Yadav</h1>
+        <p class="hero-title">BBA Business Analytics</p>
+        <p class="hero-copy">A confident and focused business student, eager to apply analytical thinking, leadership and communication skills to support business growth.</p>
+        <div class="hero-meta">
+          <span>⌖ Greater Noida, Uttar Pradesh</span>
+          <span>✉ beautyyadavv05@gmail.com</span>
+          <span>☎ 9548214605</span>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="#contact">Get in Touch</a>
+          <button class="btn btn-outline" type="button" id="printBtn">Print / Save as PDF</button>
+        </div>
+      </div>
+      <div class="photo-frame">
+        <!-- Keep photo.jpg in the same folder as this HTML file. A monogram appears if it is unavailable. -->
+        <img src="./photo.jpg" alt="Beauty Yadav profile photograph" id="profilePhoto">
+        <div class="photo-fallback" id="photoFallback" hidden>BY</div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <section class="section" id="about">
+      <div class="section-heading"><div class="eyebrow">Introduction</div><h2>About Me</h2></div>
+      <div class="about-grid">
+        <article class="card">
+          <p class="about-text">I am somebody who is very confident and focused. I enjoy learning, taking initiative and working with people to achieve shared goals.</p>
+          <p class="objective"><strong>Career Objective:</strong> To leverage my analytical and leadership skills to drive business growth while continuously learning and evolving professionally.</p>
+        </article>
+        <aside class="card info-list">
+          <div class="info-item"><div class="info-icon">⌖</div><div><small>Location</small><strong>Greater Noida, Uttar Pradesh</strong></div></div>
+          <div class="info-item"><div class="info-icon">✉</div><div><small>Email</small><strong>beautyyadavv05@gmail.com</strong></div></div>
+          <div class="info-item"><div class="info-icon">☎</div><div><small>Phone</small><strong>9548214605</strong></div></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="education">
+      <div class="section-heading"><div class="eyebrow">Academic Background</div><h2>Education</h2></div>
+      <div class="card timeline">
+        <div class="timeline-item">
+          <div class="item-top"><h3>BBA – Business Analytics</h3><span class="date">2024 – 2027</span></div>
+          <p class="subline">Galgotias University</p>
+          <p class="detail">Currently pursuing undergraduate studies in Business Analytics.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-heading"><div class="eyebrow">Strengths & Capabilities</div><h2>Skills</h2></div>
+      <div class="skills-grid">
+        <article class="card skill-card"><h3>Technical Skills</h3><div class="chips">
+          <span class="chip">Microsoft Excel</span><span class="chip">Microsoft PowerPoint</span><span class="chip">Microsoft Word</span><span class="chip">Business Research</span><span class="chip">Social Media Analytics</span>
+        </div></article>
+        <article class="card skill-card"><h3>Management Skills</h3><div class="chips"><span class="chip">Leadership</span></div></article>
+        <article class="card skill-card"><h3>Soft Skills</h3><div class="chips">
+          <span class="chip">Leadership</span><span class="chip">Effective Communication</span><span class="chip">Public Speaking</span><span class="chip">Team Management</span><span class="chip">Team Collaboration</span><span class="chip">Adaptability</span><span class="chip">Quick Learning</span><span class="chip">Problem-Solving</span><span class="chip">Time Management</span><span class="chip">Decision-Making</span><span class="chip">Networking</span><span class="chip">Creativity</span><span class="chip">Event Coordination</span><span class="chip">Multitasking</span><span class="chip">Attention to Detail</span><span class="chip">Proactiveness</span>
+        </div></article>
+        <article class="card skill-card"><h3>Languages</h3><div class="chips"><span class="chip">Hindi</span><span class="chip">English</span><span class="chip">Punjabi</span></div></article>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="section-heading"><div class="eyebrow">Professional Exposure</div><h2>Experience</h2></div>
+      <div class="card timeline">
+        <div class="timeline-item">
+          <div class="item-top"><h3>Sales Intern</h3><span class="date">1.5 Months</span></div>
+          <p class="subline">Neelam Textiles</p>
+          <p class="detail">Worked in sales during a 1.5-month internship.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-heading"><div class="eyebrow">Practical Work</div><h2>Projects</h2></div>
+      <div class="simple-grid">
+        <article class="card simple-card"><h3>Sales</h3><p>Project focused on increasing sales.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="achievements">
+      <div class="section-heading"><div class="eyebrow">Recognition</div><h2>Achievements</h2></div>
+      <div class="simple-grid">
+        <article class="card simple-card"><h3>Best Employee of the Month</h3><p>Recognised as Best Employee of the Month.</p></article>
+        <article class="card simple-card"><h3>Extracurricular Activities</h3><p>Participation and interest in sports.</p></article>
+        <article class="card simple-card"><h3>Hobbies & Interests</h3><p>Dancing, singing, painting, travelling and reading.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="section-heading"><div class="eyebrow">Let's Connect</div><h2>Contact</h2></div>
+      <div class="card contact-card">
+        <p class="contact-note">Thank you for visiting my resume. I welcome opportunities to learn, collaborate and contribute. Feel free to get in touch.</p>
+        <div class="contact-links">
+          <div><strong>Email</strong><br><a href="mailto:beautyyadavv05@gmail.com">beautyyadavv05@gmail.com</a></div>
+          <div><strong>Phone</strong><br><a href="tel:+919548214605">+91 95482 14605</a></div>
+          <div><strong>Location</strong><br>Greater Noida, Uttar Pradesh</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Beauty Yadav · Personal Resume</footer>
+
+  <script>
+    // Mobile navigation toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    // Close the mobile menu after selecting a section
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+    // Open the browser print dialog; choose "Save as PDF" to export
+    document.getElementById('printBtn').addEventListener('click', () => window.print());
+    // Show a monogram if the optional local profile photo cannot be loaded
+    const profilePhoto = document.getElementById('profilePhoto');
+    profilePhoto.addEventListener('error', () => {
+      profilePhoto.hidden = true;
+      document.getElementById('photoFallback').hidden = false;
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
